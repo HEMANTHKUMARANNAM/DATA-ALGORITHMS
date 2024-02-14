@@ -1,6 +1,6 @@
 // A Naive recursive implementation of LCS problem in java
 
-// Time Complexity: O(2m*n)
+// Time Complexity: O(2 ^ m*n)
 // Auxiliary Space: O(1)
 
 
