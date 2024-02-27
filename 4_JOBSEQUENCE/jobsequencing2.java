@@ -28,13 +28,12 @@ public class jobsequencing2
 
 		// sorting the array on the
 		// basis of their deadlines
-		Collections.sort(arr, (a, b) -> {
-			return a.deadline - b.deadline;
-		});
+		Collections.sort( arr, (a, b) -> {	return a.deadline - b.deadline;	});
 
 		// initialise the result array and maxHeap
 		ArrayList<Job> result = new ArrayList<>();
-		PriorityQueue<Job> maxHeap = new PriorityQueue<>((a, b) -> { return b.profit - a.profit; });
+
+		PriorityQueue<Job> maxHeap = new PriorityQueue<>(  (a, b) -> { return b.profit - a.profit; }  );
 
 		// starting the iteration from the end
 		for (int i = n - 1; i > -1; i--) 
@@ -51,6 +50,7 @@ public class jobsequencing2
 				slot_available = arr.get(i).deadline - arr.get(i - 1).deadline;
 			}
 
+
 			// include the profit of job(as priority),
 			// deadline and job_id in maxHeap
 			maxHeap.add(arr.get(i));
@@ -66,7 +66,10 @@ public class jobsequencing2
 
 				// include the job in the result array
 				result.add(job);
+
+				
 			}
+			
 		}
 
 		// jobs included might be shuffled
@@ -90,9 +93,20 @@ public class jobsequencing2
 		arr.add(new Job('c', 2, 27));
 		arr.add(new Job('d', 1, 25));
 		arr.add(new Job('e', 3, 15));
+		// arr.add(new Job('f', 2, 50));
+		// arr.add(new Job('g', 3, 70));
+		// arr.add(new Job('h', 1, 40));
+		// arr.add(new Job('i', 2, 60));
+		// arr.add(new Job('j', 3, 80));
+		// arr.add(new Job('k', 1, 90));
+		// arr.add(new Job('l', 3, 30));
+		// arr.add(new Job('m', 2, 65));
+		// arr.add(new Job('n', 1, 20));
+		// arr.add(new Job('o', 3, 55));
+
+
 	
-		System.out.println("Following is maximum "
-						+ "profit sequence of jobs");
+		System.out.println("Following is maximum "+ "profit sequence of jobs");
 
 		// Function call
 		printJobScheduling(arr);
