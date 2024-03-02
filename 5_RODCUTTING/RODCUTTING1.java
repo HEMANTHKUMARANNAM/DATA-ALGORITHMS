@@ -16,7 +16,9 @@ public class RODCUTTING1{
 		// it
 		
 		int notCut = cutRod(price, index - 1, n);
+
 		int cut = Integer.MIN_VALUE;
+		
 		int rod_length = index + 1;
 
 		if (rod_length <= n)

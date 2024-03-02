@@ -28,7 +28,12 @@ public class jobsequencing2
 
 		// sorting the array on the
 		// basis of their deadlines
-		Collections.sort( arr, (a, b) -> {	return a.deadline - b.deadline;	});
+		Collections.sort( arr, (a, b) -> {	return a.deadline - b.deadline;	}  );
+
+		for (int i = 0; i < arr.size(); i++)
+		{
+			System.out.println( arr.get(i).deadline);
+		}
 
 		// initialise the result array and maxHeap
 		ArrayList<Job> result = new ArrayList<>();
