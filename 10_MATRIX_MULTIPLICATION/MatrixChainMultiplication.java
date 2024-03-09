@@ -20,6 +20,7 @@ public class MatrixChainMultiplication
 		// and return the minimum count
 		for (int k = i; k < j; k++) 
 		{
+			// System.out.println( "MATRIXCHAIN : " + i+ " " + j+ " " + MatrixChainOrder(p, i, k) + " " + MatrixChainOrder(p, k + 1, j) + " " + p[i - 1] * p[k] * p[j] );
 			int count = MatrixChainOrder(p, i, k)  + MatrixChainOrder(p, k + 1, j)  + p[i - 1] * p[k] * p[j];
 
 			if (count < min)
