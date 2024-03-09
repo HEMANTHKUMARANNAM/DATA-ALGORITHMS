@@ -8,6 +8,7 @@ public class UNDERSTAND
         String a = sc.next();
         String b = sc.next();
 
+
         returndata data = Solution.lcs(a.length(), b.length(), a, b);
 
         int[][] dp = data.b;
@@ -23,6 +24,8 @@ public class UNDERSTAND
             }
             System.out.println("");
         }
+
+        sc.close();
 
     }
 }
