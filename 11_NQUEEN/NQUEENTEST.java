@@ -10,7 +10,7 @@ public class NQUEENTEST
 
     public static void main(String[] args) throws IOException 
     {
-        int N = 20;
+        int N = 5;
 
         int[][] board = new int[N][N];
 
