@@ -39,6 +39,7 @@ public class suffixarrat
         {
             System.out.println(array[i] );
         }
+        sc.close();
 
 
     }

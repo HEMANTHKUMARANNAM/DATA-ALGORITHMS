@@ -28,22 +28,22 @@ public class AStarSearch {
 		// 1--> The cell is not blocked
 		// 0--> The cell is blocked
 		int[][] grid = {
-				{1, 0, 1, 1, 1, 1, 0, 1, 1, 1},
-				{1, 1, 1, 0, 1, 1, 1, 0, 1, 1},
-				{1, 1, 1, 0, 1, 1, 0, 1, 0, 1},
-				{0, 0, 1, 0, 1, 0, 0, 0, 0, 1},
-				{1, 1, 1, 0, 1, 1, 1, 0, 1, 0},
-				{1, 0, 1, 1, 1, 1, 0, 1, 0, 0},
-				{1, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-				{1, 0, 1, 1, 1, 1, 0, 1, 1, 1},
-				{1, 1, 1, 0, 0, 0, 1, 0, 0, 1}
+				{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 },
+				{ 1, 1, 1, 0, 1, 1, 1, 0, 1, 1 },
+				{ 1, 1, 1, 0, 1, 1, 0, 1, 0, 1 },
+				{ 0, 0, 1, 0, 1, 0, 0, 0, 0, 1 },
+				{ 1, 1, 1, 0, 1, 1, 1, 0, 1, 0 },
+				{ 1, 0, 1, 1, 1, 1, 0, 1, 0, 0 },
+				{ 1, 0, 0, 0, 0, 1, 0, 0, 0, 1 },
+				{ 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 },
+				{ 1, 1, 1, 0, 0, 0, 1, 0, 0, 1 }
 		};
 
 		// Source is the left-most bottom-most corner
-		int[] src = {8, 0};
+		int[] src = { 8, 0 };
 
 		// Destination is the left-most top-most corner
-		int[] dest = {0, 0};
+		int[] dest = { 0, 9 };
 
 		aStarSearch(grid, src, dest);
 	}
@@ -71,15 +71,16 @@ public class AStarSearch {
 
 		Map<int[], Boolean> path = new LinkedHashMap<>();
 
-		while (!(cellDetails[row][col].parent_i == row && cellDetails[row][col].parent_j == col)) {
-			path.put(new int[]{row, col}, true);
+		while (		!(cellDetails[row][col].parent_i == row && cellDetails[row][col].parent_j == col)	) 
+		{
+			path.put(new int[] { row, col }, true);
 			int temp_row = cellDetails[row][col].parent_i;
 			int temp_col = cellDetails[row][col].parent_j;
 			row = temp_row;
 			col = temp_col;
 		}
 
-		path.put(new int[]{row, col}, true);
+		path.put(new int[] { row, col }, true);
 		List<int[]> pathList = new ArrayList<>(path.keySet());
 		Collections.reverse(pathList);
 
@@ -90,7 +91,7 @@ public class AStarSearch {
 				System.out.print("-> (" + p[0] + ", " + p[1] + ")");
 			}
 		});
-		System.out.println(); 
+		System.out.println();
 	}
 
 	private static void aStarSearch(int[][] grid, int[] src, int[] dest) {
@@ -131,7 +132,7 @@ public class AStarSearch {
 		cellDetails[i][j].parent_j = j;
 
 		Map<Double, int[]> openList = new HashMap<>();
-		openList.put(0.0, new int[]{i, j});
+		openList.put(0.0, new int[] { i, j });
 
 		boolean foundDest = false;
 
@@ -159,10 +160,9 @@ public class AStarSearch {
 					hNew = calculateHValue(i - 1, j, dest);
 					fNew = gNew + hNew;
 
-					if (cellDetails[i - 1][j].f == Double.POSITIVE_INFINITY
-
-|| cellDetails[i - 1][j].f > fNew) {
-						openList.put(fNew, new int[]{i - 1, j});
+					if (cellDetails[i - 1][j].f == Double.POSITIVE_INFINITY || cellDetails[i - 1][j].f > fNew) 
+					{
+						openList.put(fNew, new int[] { i - 1, j });
 
 						cellDetails[i - 1][j].f = fNew;
 						cellDetails[i - 1][j].g = gNew;
@@ -188,7 +188,7 @@ public class AStarSearch {
 					fNew = gNew + hNew;
 
 					if (cellDetails[i + 1][j].f == Double.POSITIVE_INFINITY || cellDetails[i + 1][j].f > fNew) {
-						openList.put(fNew, new int[]{i + 1, j});
+						openList.put(fNew, new int[] { i + 1, j });
 
 						cellDetails[i + 1][j].f = fNew;
 						cellDetails[i + 1][j].g = gNew;
@@ -214,7 +214,7 @@ public class AStarSearch {
 					fNew = gNew + hNew;
 
 					if (cellDetails[i][j + 1].f == Double.POSITIVE_INFINITY || cellDetails[i][j + 1].f > fNew) {
-						openList.put(fNew, new int[]{i, j + 1});
+						openList.put(fNew, new int[] { i, j + 1 });
 
 						cellDetails[i][j + 1].f = fNew;
 						cellDetails[i][j + 1].g = gNew;
@@ -240,7 +240,7 @@ public class AStarSearch {
 					fNew = gNew + hNew;
 
 					if (cellDetails[i][j - 1].f == Double.POSITIVE_INFINITY || cellDetails[i][j - 1].f > fNew) {
-						openList.put(fNew, new int[]{i, j - 1});
+						openList.put(fNew, new int[] { i, j - 1 });
 
 						cellDetails[i][j - 1].f = fNew;
 						cellDetails[i][j - 1].g = gNew;
@@ -266,7 +266,7 @@ public class AStarSearch {
 					fNew = gNew + hNew;
 
 					if (cellDetails[i - 1][j + 1].f == Double.POSITIVE_INFINITY || cellDetails[i - 1][j + 1].f > fNew) {
-						openList.put(fNew, new int[]{i - 1, j + 1});
+						openList.put(fNew, new int[] { i - 1, j + 1 });
 
 						cellDetails[i - 1][j + 1].f = fNew;
 						cellDetails[i - 1][j + 1].g = gNew;
@@ -291,8 +291,8 @@ public class AStarSearch {
 					hNew = calculateHValue(i - 1, j - 1, dest);
 					fNew = gNew + hNew;
 
-					if				 (cellDetails[i - 1][j - 1].f == Double.POSITIVE_INFINITY || cellDetails[i - 1][j - 1].f > fNew) {
-						openList.put(fNew, new int[]{i - 1, j - 1});
+					if (cellDetails[i - 1][j - 1].f == Double.POSITIVE_INFINITY || cellDetails[i - 1][j - 1].f > fNew) {
+						openList.put(fNew, new int[] { i - 1, j - 1 });
 
 						cellDetails[i - 1][j - 1].f = fNew;
 						cellDetails[i - 1][j - 1].g = gNew;
@@ -318,7 +318,7 @@ public class AStarSearch {
 					fNew = gNew + hNew;
 
 					if (cellDetails[i + 1][j + 1].f == Double.POSITIVE_INFINITY || cellDetails[i + 1][j + 1].f > fNew) {
-						openList.put(fNew, new int[]{i + 1, j + 1});
+						openList.put(fNew, new int[] { i + 1, j + 1 });
 
 						cellDetails[i + 1][j + 1].f = fNew;
 						cellDetails[i + 1][j + 1].g = gNew;
@@ -344,7 +344,7 @@ public class AStarSearch {
 					fNew = gNew + hNew;
 
 					if (cellDetails[i + 1][j - 1].f == Double.POSITIVE_INFINITY || cellDetails[i + 1][j - 1].f > fNew) {
-						openList.put(fNew, new int[]{i + 1, j - 1});
+						openList.put(fNew, new int[] { i + 1, j - 1 });
 
 						cellDetails[i + 1][j - 1].f = fNew;
 						cellDetails[i + 1][j - 1].g = gNew;
