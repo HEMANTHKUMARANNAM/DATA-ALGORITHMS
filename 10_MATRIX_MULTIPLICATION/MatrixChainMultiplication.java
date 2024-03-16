@@ -6,6 +6,7 @@ public class MatrixChainMultiplication
 	// for i = 1 . . . n
 	static int MatrixChainOrder(int p[], int i, int j)
 	{
+		
 		if (i == j)
 		{
 			return 0;
