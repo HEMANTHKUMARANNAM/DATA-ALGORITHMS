@@ -63,7 +63,9 @@ public class jobsequence
     // Driver's code
     public static void main(String args[]) 
     {
+        
         ArrayList<jobsequence> arr = new ArrayList<jobsequence>();
+
         arr.add(new jobsequence('a', 2, 100));
         arr.add(new jobsequence('b', 1, 19));
         arr.add(new jobsequence('c', 2, 27));

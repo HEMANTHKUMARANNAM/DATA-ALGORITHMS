@@ -1,56 +1,65 @@
 
-import java.util.Arrays;
 
-public class WordWrapDpMemo {
+class Solution
+{
+    public int solveWordWrap (int[] nums, int k)
+    {
+        int len = nums.length;
+        
+        int dp[][] = new int[ nums.length +1][ k + nums.length  + 1 ];
+        
+        for(int i =0 ; i< nums.length; i++)
+        {
+            for(int j =0 ; j<  k + nums.length ; j++)
+            {
+                dp[i][j] = -1;
+            }
+        }
+        
+        
+        return solvedynamic( nums , k , 0 , k , dp );
+    
+        
+    }
+    
+    public static int solvedynamic( int[] nums , int k , int i ,int rem , int[][] dp )
+    {
+        if( i == nums.length )
+        {
+            return 0;
+        }
+        
+        
+        if( dp[i][rem+1] != -1 )
+        {
+            return dp[i][rem+1];
+        }
+        
+        int ans =0;
+        
+        if( nums[i] > rem )
+        {
+            ans = (rem+1)*(rem+1) + solvedynamic( nums , k , i+1 , k-nums[i]-1  , dp );
+        }
+        else
+        {
+            
+            int ch1 = (rem+1)*(rem+1) + solvedynamic( nums , k , i+1 , k-nums[i]-1  , dp );            
+            int ch2 = 0 + solvedynamic( nums , k , i+1 , rem - nums[i] -1  , dp );
+            
+            ans= Math.min( ch1 , ch2 );
+            
+            
+        }
+        
+        
+        dp[i][rem+1] = ans;
+        
+        return ans;
+        
+        
+    }
+    
 
-
-	private int solveWordWrap(int[] nums, int k) {
-		int[][] memo = new int[nums.length][k + 1];
-		for (int i = 0; i < nums.length; i++) {
-			Arrays.fill(memo[i], -1);
-		}
-		return solveWordWrapUsingMemo(nums, nums.length, k, 0, k, memo);
-	}
-
-	private int solveWordWrap(int[] words, int n, int length, int wordIndex, int remLength, int[][] memo) {
-
-		//base case for last word
-		if (wordIndex == n - 1) {
-			memo[wordIndex][remLength] = words[wordIndex] < remLength ? 0 : square(remLength);
-			return memo[wordIndex][remLength];
-		}
-
-		int currWord = words[wordIndex];
-		//if word can fit in the remaining line
-		if (currWord < remLength) {
-			return Math.min(
-					//if word is kept on same line
-					solveWordWrapUsingMemo(words, n, length, wordIndex + 1, remLength == length ? remLength - currWord : remLength - currWord - 1, memo),
-					//if word is kept on next line
-					square(remLength) + solveWordWrapUsingMemo(words, n, length, wordIndex + 1, length - currWord, memo)
-			);
-		} else {
-			//if word is kept on next line
-			return square(remLength) + solveWordWrapUsingMemo(words, n, length, wordIndex + 1, length - currWord, memo);
-		}
-	}
-
-	private int solveWordWrapUsingMemo(int[] words, int n, int length, int wordIndex, int remLength, int[][] memo) {
-		if (memo[wordIndex][remLength] != -1) {
-			return memo[wordIndex][remLength];
-		}
-
-		memo[wordIndex][remLength] = solveWordWrap(words, n, length, wordIndex, remLength, memo);
-		return memo[wordIndex][remLength];
-	}
-
-	private int square(int n) 
-	{
-		return n * n;
-	}
-
-	public static void main(String[] args)
-	{
-		System.out.println(new WordWrapDpMemo().solveWordWrap(new int[]{3, 2, 2, 5}, 6));
-	}
+    
 }

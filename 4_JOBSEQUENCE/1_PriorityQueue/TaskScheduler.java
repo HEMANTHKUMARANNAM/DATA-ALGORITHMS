@@ -30,7 +30,7 @@ class Task {
 public class TaskScheduler {
     public static void main(String[] args) {
         // Create a priority queue for tasks
-        PriorityQueue<Task> taskQueue = new PriorityQueue<>((t1, t2) -> t2.getPriority() - t1.getPriority());
+        PriorityQueue<Task> taskQueue = new PriorityQueue<>((t1, t2) -> t1.getPriority() - t2.getPriority());
 
         // Add tasks to the priority queue
         taskQueue.add(new Task("Task 1", 5));

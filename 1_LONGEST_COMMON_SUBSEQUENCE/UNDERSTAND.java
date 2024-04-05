@@ -4,6 +4,7 @@ public class UNDERSTAND
 {
     public static void main(String[] args) 
     {
+        
         Scanner sc = new Scanner(System.in);
         String a = sc.next();
         String b = sc.next();
@@ -18,15 +19,32 @@ public class UNDERSTAND
             for(int j = 1; j < dp[i].length ; j++) 
             {
                 String s = "";
-                s += a.charAt(i-1) ;
-                s += b.charAt(j-1);
+                // s += a.charAt(i-1) ;
+                // s += b.charAt(j-1);
                 System.out.print(dp[i][j] + s + "\t");
             }
             System.out.println("");
         }
 
+        printLCS(a, b, dp, a.length(), b.length());
+    
+
         sc.close();
 
+    }
+
+    static void printLCS(String X, String Y, int[][] dp, int i, int j) {
+        if (i == 0 || j == 0) {
+            return;
+        }
+        if (X.charAt(i - 1) == Y.charAt(j - 1)) {
+            printLCS(X, Y, dp, i - 1, j - 1);
+            System.out.print(X.charAt(i - 1));
+        } else if (dp[i - 1][j] > dp[i][j - 1]) {
+            printLCS(X, Y, dp, i - 1, j);
+        } else {
+            printLCS(X, Y, dp, i, j - 1);
+        }
     }
 }
 

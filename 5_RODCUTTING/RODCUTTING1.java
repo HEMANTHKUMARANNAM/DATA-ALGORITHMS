@@ -12,7 +12,7 @@ public class RODCUTTING1{
 			return n * price[0];
 		}
 		// At any index we have 2 options either
-		// cut the rod of this length or not cut
+		// cut the rod of this length or not cut 
 		// it
 		
 		int notCut = cutRod(price, index - 1, n);
